@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { makeStyles } from 'styles';
 
 import Sidebar from './Sidebar';
@@ -44,11 +44,13 @@ interface Props {
 
 export default memo(function DesktopViewer({ solid, panel }: Props) {
   const full = panel === 'full';
+  // added state for saving selected vertex of icosahedron
+  const [vertex, setVertex] = useState(-1);
   return (
     <div className={styles('viewer')}>
       <div className={styles('scene', full && 'full')}>
-        <X3dScene label={solid} />
-        <Overlay solid={solid} />
+        <X3dScene label={solid} setVertex={setVertex} />
+        <Overlay solid={solid} vertex={vertex} />
       </div>
       <div className={styles(full ? 'sidebarCompact' : 'sidebarFull')}>
         <Sidebar panel={panel} solid={solid} compact={full} />

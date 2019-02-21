@@ -7,6 +7,9 @@ import useSolidContext from './useSolidContext';
 import useHitOptions from './useHitOptions';
 import Config from 'components/ConfigCtx';
 
+// import icosahedron coordinates
+import icosahedronCoordinates from '../../../../data/polyhedra/icosahedron.json';
+
 // Join a list of lists with an inner and outer separator.
 function joinListOfLists<T>(list: T[][], outerSep: string, innerSep: string) {
   return _.map(list, elem => elem.join(innerSep)).join(outerSep);
@@ -35,7 +38,7 @@ interface X3dEvent extends MouseEvent {
   hitPnt: Point;
 }
 
-export default function X3dPolyhedron() {
+export default function X3dPolyhedron({ setVertex }: { setVertex: Function }) {
   const shape = useRef<any>(null);
   const hitPnt = useRef<Point | null>(null);
 
@@ -46,15 +49,37 @@ export default function X3dPolyhedron() {
     applyWithHitOption: onClick,
   } = useHitOptions();
 
+  // checks if user cursor is close to a vertex of the icosahedron, breaks if found one
+  const handleCloseToVertex = (coordinates: number[]) => {
+    for (let j = 0; j < icosahedronCoordinates.vertices.length; j++) {
+      let isClose = true;
+      for (let i = 0; i < 3; i++) {
+        isClose =
+          isClose &&
+          0.05 >
+            Math.abs(coordinates[i] - icosahedronCoordinates.vertices[j][i]);
+      }
+      if (isClose) {
+        console.log('close to vertex', j);
+        setVertex(j);
+        break;
+      }
+    }
+  };
+
+  // updated mouse/touch position in 3-dimensional space
   const listeners = {
     mousedown(e: X3dEvent) {
+      handleCloseToVertex(e.hitPnt);
       hitPnt.current = e.hitPnt;
     },
     mouseup(e: X3dEvent) {
+      handleCloseToVertex(e.hitPnt);
       if (!_.isEqual(hitPnt.current, e.hitPnt)) return;
       onClick(e.hitPnt);
     },
     mousemove(e: X3dEvent) {
+      handleCloseToVertex(e.hitPnt);
       hitPnt.current = e.hitPnt;
       onHover(e.hitPnt);
     },

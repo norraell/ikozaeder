@@ -45,9 +45,11 @@ const styles = makeStyles({
 
 interface Props {
   solid: string;
+  // the index of selected vertex, initially -1
+  vertex: number;
 }
 
-export default function Overlay({ solid }: Props) {
+export default function Overlay({ solid, vertex }: Props) {
   return (
     <div className={styles('overlay')}>
       {/*
@@ -66,7 +68,7 @@ export default function Overlay({ solid }: Props) {
           fontSize: '2em',
         }}
       >
-        i:kozaeder
+        i:kozaeder {vertex}
       </span>
       <div className={styles('prompt')}>
         <Prompt />
