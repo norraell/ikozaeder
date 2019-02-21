@@ -17,7 +17,6 @@ const Providers = wrapProviders([
 const Root = () => {
   return (
     <Providers>
-      <PageTracker />
       <App />
     </Providers>
   );
