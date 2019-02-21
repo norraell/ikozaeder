@@ -15,7 +15,7 @@ const styles = makeStyles({
   menu: {
     width: '100%',
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr',
+    gridTemplateColumns: '1fr 1fr',
     justifyItems: 'center',
   },
 });
@@ -33,23 +33,24 @@ export default function NavMenu({
 }: Props) {
   return (
     <nav className={styles('menu')}>
+      {/* RG: disabled navigation Links and changed navigation titles */}
       <IconLink
         replace
         to={`/${solid}/list`}
-        title="List"
+        title="Sitemap"
         iconName={mdiFormatListBulleted}
         iconOnly={compact}
         onClick={onClick}
       />
-      <IconLink
-        replace
-        to={`/${solid}/info`}
-        title="Info"
-        iconName={mdiInformationOutline}
-        iconOnly={compact}
-      />
       {null && (
         <>
+          <IconLink
+            replace
+            to={`/${solid}/info`}
+            title="Info"
+            iconName={mdiInformationOutline}
+            iconOnly={compact}
+          />
           <IconLink
             replace
             to={`/${solid}/options`}
@@ -71,7 +72,7 @@ export default function NavMenu({
       <IconLink
         replace
         to={`/${solid}/full`}
-        title="Back"
+        title="Back to full view"
         iconName={mdiCubeOutline}
         iconOnly={compact}
         onClick={onClick}

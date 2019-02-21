@@ -50,12 +50,24 @@ interface Props {
 export default function Overlay({ solid }: Props) {
   return (
     <div className={styles('overlay')}>
+      {/*
       <div className={styles('homeLink')}>
         <BackLink solid={solid} />
       </div>
-      <div className={styles('title')}>
-        <Title name={solid} />
-      </div>
+      */}
+      {/* added (RG): alternative (hard-coded) title */}
+      <span
+        style={{
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          padding: '10px',
+          fontFamily: '"Andale Mono", AndaleMono, monospace',
+          fontSize: '2em',
+        }}
+      >
+        i:kozaeder
+      </span>
       <div className={styles('prompt')}>
         <Prompt />
       </div>

@@ -144,9 +144,26 @@ export default function PolyhedronList() {
   return (
     <section className={styles('list')}>
       <SearchBar value={filterText} onChange={setFilterText} />
-      {filteredGroups.map(({ name, ...group }: any) => (
+      {/* added (RG): dummy sitemap + access to sandbox */}
+      <div style={{
+        padding: '10px',
+        fontFamily: '"Andale Mono", AndaleMono, monospace',
+      }}>
+        <ul>
+          <li>
+            <ul>
+              <a href="/sandbox">Sandbox</a>
+                <li style={{paddingLeft: '5px'}}>Lorem Ipsum</li>
+                <li style={{paddingLeft: '5px'}}>Lorem Ipsum</li>
+                <li style={{paddingLeft: '5px'}}>Lorem Ipsum</li>
+                <li style={{paddingLeft: '5px'}}>Lorem Ipsum</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      {/* filteredGroups.map(({ name, ...group }: any) => (
         <PolyhedronGroup key={name} group={group} />
-      ))}
+      )) */}
     </section>
   );
 }

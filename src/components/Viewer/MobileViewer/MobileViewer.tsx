@@ -100,10 +100,11 @@ export default memo(function MobileViewer({ panel, solid }: Props) {
   const [header, focusOnHeader] = useHiddenHeading(panel);
   const isTransparent = _.includes(['operations', 'full'], panel);
 
+// removed (RG): BackLink
   return (
     <section className={styles('viewer')}>
       <div className={styles('title')}>
-        <BackLink solid={solid} />
+        {/* <BackLink solid={solid} /> */}
         <Title name={solid} />
       </div>
       <div

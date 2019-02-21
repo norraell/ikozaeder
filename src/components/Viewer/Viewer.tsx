@@ -87,7 +87,7 @@ export default function Viewer({ solid, history, url }: Props) {
       <Route
         exact
         path={url}
-        render={() => <Redirect to={`${url}/operations`} />}
+        render={() => <Redirect to={`${url}/full`} />}
       />
       <Route
         path={`${url}/:panel`}

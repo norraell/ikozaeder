@@ -20,6 +20,11 @@ const HomePage = Loadable({
   loading: Loading,
 });
 
+const Sandbox = Loadable({
+  loader: () => import('./Sandbox'),
+  loading: Loading,
+});
+
 const Viewer = Loadable({
   loader: () => import('./Viewer'),
   loading: Loading,
@@ -34,9 +39,23 @@ export default () => (
     />
     <Route
       exact
+      path="/sandbox"
+      render={() => <Sandbox />}
+    />
+    {/*
+    <Route
+      exact
       path="/random"
       render={() => <Redirect to={randomSolidName()} />}
     />
+    <Route
+      exact
+      path="/test"
+      render={({match, history}) => {
+        return <Viewer solid="icosahedron" url={match.url} history={history} />
+      }}
+    />
+    */}
     <Route
       path="/:solid"
       render={({ match, history }) => {
@@ -55,12 +74,6 @@ export default () => (
           return <Viewer solid={solid} url={match.url} history={history} />;
         }
         return <ErrorPage />;
-      }}
-    />
-    <Route 
-      path="/test"
-      render={({match, history}) => {
-        return <Viewer solid="icosahedron" url={match.url} history={history} />
       }}
     />
   </Switch>
