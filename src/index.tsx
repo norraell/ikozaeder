@@ -18,6 +18,8 @@ const trackingId =
 ReactGA.initialize(trackingId);
 */
 
+const helloworld = null;
+
 const root = document.getElementById('root');
 if (root) {
   ReactDOM.render(<Root />, root);
